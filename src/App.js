@@ -4,14 +4,31 @@ import "./App.css";
 import SeasonDisplay from "./seasonDisplay";
 
 class App extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+
+    this.state = { 
+      lat: null,
+      errorMessage: '',
+    };
+
     window.navigator.geolocation.getCurrentPosition(
-      position => console.log(position),
-      err => console.log(err)
+      position => {
+        console.log(position);
+
+        return this.setState({ lat: position.coords.latitude });
+      },
+      err => {
+        console.log(err.message);
+        this.setState({errorMessage: err.message});
+      }
     );
+  }
+  render() {
+
     return (
       <div className="App">
-        <SeasonDisplay />
+        <SeasonDisplay lat={this.state.lat} errorMessage={this.state.errorMessage} />
       </div>
     );
   }
