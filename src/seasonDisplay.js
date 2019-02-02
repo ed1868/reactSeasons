@@ -6,8 +6,16 @@ export default class seasonDisplay extends Component {
     console.log(props);
   }
 
-  
+
   render() {
+  const getSeason = (lat, month) => {
+      if(month > 2 && month < 9) {
+        return lat > 0 ? 'SUMMER BABY' : 'WINTER IS COMING!';
+      }
+      return month > 0 ? 'WINTER IS COMING' : 'SUMMER BABY';
+    }
+    const season = getSeason(this.props.lat, new Date().getMonth());
+    console.log(season);
     console.log(this.props.lat);
     console.log(this.props.errorMessage);
     if (this.props.errorMessage && !this.props.lat) {
