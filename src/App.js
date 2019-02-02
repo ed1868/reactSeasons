@@ -25,7 +25,6 @@ class App extends Component {
     );
   }
   render() {
-
     return (
       <div className="App">
         <SeasonDisplay lat={this.state.lat} errorMessage={this.state.errorMessage} />
